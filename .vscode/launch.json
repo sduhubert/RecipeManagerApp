@@ -12,7 +12,7 @@
             "program": "${workspaceFolder}/RecipeManagerApp/bin/Debug/net7.0/RecipeManagerApp.dll",
             "args": [],
             "cwd": "${workspaceFolder}/RecipeManagerApp",
-            "console": "internalConsole",
+            "console": "externalTerminal",
             "stopAtEntry": false
         },
         {
