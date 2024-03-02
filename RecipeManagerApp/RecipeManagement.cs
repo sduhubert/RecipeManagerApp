@@ -1,9 +1,13 @@
+using System.IO.Compression;
+using System.Xml.Serialization;
+
 namespace RecipeManager
 {
     public interface IRecipe
     {
         // Specifies methods for adding, viewing, updating, and categorizing recipes.
         void Add(List<Recipe> recipes);
+        void View(List<Recipe> recipes);
     }
 
     public interface IRecipeStorage
@@ -65,6 +69,46 @@ namespace RecipeManager
 
             Recipe newRecipe = new Recipe(Guid.NewGuid(), enteredTitle, enteredIngredients, enteredInstructions, enteredCategory);
             recipes.Add(newRecipe);
+        }
+
+        public void View(List<Recipe> recipes)
+        {
+            Console.Clear();
+
+            // Checking if there are any recipes saved
+            if(recipes.Count > 0)
+            {
+                int choice = 0;
+                bool isChoiceCorrect = false;
+
+                while(!isChoiceCorrect)
+                {
+                    int i = 1;
+                    foreach(Recipe recipe in recipes)
+                    {
+                        System.Console.WriteLine($"{i}. {recipe.Title}");
+                        i++;
+                    }
+                    System.Console.WriteLine($"\n{i}. Exit");
+
+                    System.Console.Write("\nChoose the recipe to view: ");
+
+                    // Checking if the entered text is a number, higher than 0 and lower or equal to the last option.
+                    isChoiceCorrect = int.TryParse(Console.ReadLine(), out choice) && choice > 0 && choice <= i;
+                    if(choice == i) return;
+                }
+
+                // Writing out the recipe.
+                Console.Clear();
+                System.Console.WriteLine(recipes[choice-1].Title.ToUpper());
+                System.Console.WriteLine($"\nIngredients:");
+                foreach(string ingredient in recipes[choice-1].Ingredients) System.Console.WriteLine($"{ingredient},");
+                System.Console.WriteLine($"\nInstructions:\n{recipes[choice-1].Instructions}");
+            }
+            else
+            {
+                System.Console.WriteLine("You currently don't have any recipes saved.");
+            }
         }
     }
 

@@ -13,8 +13,8 @@
             List<Recipe> recipes = new List<Recipe>();
 
             recipeManager.Add(recipes);
+            recipeManager.View(recipes);
 
-            System.Console.WriteLine(recipes[0].Title);
             return 0;
         }
     }
