@@ -20,17 +20,19 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
+
     - name: Restore dependencies (RecipeManagerApp)
       run: dotnet restore
-      working-directory: RecipeManagerApp
+      working-directory: RecipeManagerAp/RecipeManagerApp
 
     - name: Build (RecipeManagerApp)
       run: dotnet build --no-restore
-      working-directory: RecipeManagerApp
+      working-directory: RecipeManagerAp/RecipeManagerApp
 
     - name: Restore dependencies (RecipeManagerApp.Tests)
       run: dotnet restore
-      working-directory: RecipeManagerApp.Tests
+      working-directory: RecipeManagerAp/RecipeManagerApp.Tests
+
     - name: Test (RecipeManagerApp.Tests)
       run: dotnet test
-      working-directory: RecipeManagerApp.Tests
+      working-directory: RecipeManagerAp/RecipeManagerApp.Tests
