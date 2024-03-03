@@ -31,8 +31,8 @@ jobs:
 
     - name: Restore dependencies (RecipeManagerApp.Tests)
       run: dotnet restore
-      working-directory: ../RecipeManagerApp.Tests
+      working-directory: RecipeManagerApp.Tests
 
     - name: Test (RecipeManagerApp.Tests)
       run: dotnet test
-      working-directory: ../RecipeManagerApp.Tests
+      working-directory: RecipeManagerApp.Tests
